@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MouseAndPointerDeviceExample", "MouseAndPointerDeviceExample\MouseAndPointerDeviceExample.csproj", "{E592EC56-DEC5-43EF-B3CD-8A12EA27B0DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationWithFactoryMethod", "ApplicationWithFactoryMethod\ApplicationWithFactoryMethod.csproj", "{F64AFE0C-5AE6-4068-AFC6-A6182DDE9CC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E592EC56-DEC5-43EF-B3CD-8A12EA27B0DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E592EC56-DEC5-43EF-B3CD-8A12EA27B0DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E592EC56-DEC5-43EF-B3CD-8A12EA27B0DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E592EC56-DEC5-43EF-B3CD-8A12EA27B0DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F64AFE0C-5AE6-4068-AFC6-A6182DDE9CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64AFE0C-5AE6-4068-AFC6-A6182DDE9CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64AFE0C-5AE6-4068-AFC6-A6182DDE9CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64AFE0C-5AE6-4068-AFC6-A6182DDE9CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5414507-3E91-4734-9A01-F55189736243}
+	EndGlobalSection
+EndGlobal

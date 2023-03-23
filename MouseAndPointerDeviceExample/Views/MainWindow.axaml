@@ -1,0 +1,130 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MouseAndPointerDeviceExample.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:models="clr-namespace:MouseAndPointerDeviceExample.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MouseAndPointerDeviceExample.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="MouseAndPointerDeviceExample">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid ColumnDefinitions="0.3*, *">
+		<Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
+			<StackPanel>
+				<RadioButton IsChecked="{Binding IsDrag}"
+							 GroupName="PaintOption"
+							 Content="Drag"/>
+				<RadioButton IsChecked="{Binding IsLine}"
+							 GroupName="PaintOption"
+							 Content="Line"/>
+				<RadioButton IsChecked="{Binding IsEllipse}"
+							 GroupName="PaintOption"
+							 Content="Ellipse"/>
+				<RadioButton IsChecked="{Binding IsRectangle}"
+							 GroupName="PaintOption"
+							 Content="Rectangle"/>
+				
+				<TextBlock Text="Stroke:"/>
+				<ComboBox Height="40" SelectedItem="{Binding CurrentStroke}"
+						  Items="{Binding ColoredBrush}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<Rectangle Width="{Binding $parent[ComboBox].Bounds.Width}"
+									   Height="{Binding $parent[ComboBox].Bounds.Height}"
+									   Fill="{Binding}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
+				<TextBlock Text="Fill:"/>
+				<ComboBox Height="40" SelectedItem="{Binding CurrentFill}"
+						  Items="{Binding ColoredBrush}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<Rectangle Width="{Binding $parent[ComboBox].Bounds.Width}"
+									   Height="{Binding $parent[ComboBox].Bounds.Height}"
+									   Fill="{Binding}"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				
+				<TextBlock Text="StrokeThickness:"/>
+				<NumericUpDown Minimum="1" Value="{Binding StrokeThickness}"/>
+			</StackPanel>
+		</Border>
+
+		<Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+			<ItemsControl PointerPressed="PointerPressedOnCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Items="{Binding ShapesCollection}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<Canvas Background="White" Name="canvas"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+
+				<ItemsControl.DataTemplates>
+					<DataTemplate DataType="{x:Type	models:MyLine}">
+						<Line StartPoint="{Binding StartPoint}"
+							  EndPoint="{Binding EndPoint}"
+							  Stroke="{Binding Stroke}"
+							  StrokeThickness="{Binding StrokeThickness}"
+							  PointerWheelChanged="PointerWheelChangedShape">
+							<Line.RenderTransform>
+								<ScaleTransform
+									ScaleX="{Binding ScaleX}"
+									ScaleY="{Binding ScaleY}"/>
+							</Line.RenderTransform>
+						</Line>
+					</DataTemplate>
+
+					<DataTemplate DataType="{x:Type	models:MyEllipse}">
+						<Ellipse Height="{Binding Height}"
+								 Width="{Binding Width}"
+								 Fill="{Binding Fill}"
+								 Stroke="{Binding Stroke}"
+								 StrokeThickness="{Binding StrokeThickness}"
+								 PointerWheelChanged="PointerWheelChangedShape">
+							<Ellipse.RenderTransform>
+								<TransformGroup>
+									<TranslateTransform
+										X="{Binding StartPoint.X}"
+										Y="{Binding StartPoint.Y}"/>
+									<ScaleTransform
+										ScaleX="{Binding ScaleX}"
+										ScaleY="{Binding ScaleY}"/>
+								</TransformGroup>
+							</Ellipse.RenderTransform>
+						</Ellipse>
+					</DataTemplate>
+
+					<DataTemplate DataType="{x:Type	models:MyRectangle}">
+						<Rectangle Height="{Binding Height}"
+								   Width="{Binding Width}"
+								   Fill="{Binding Fill}"
+								   Stroke="{Binding Stroke}"
+								   StrokeThickness="{Binding StrokeThickness}"
+								   PointerWheelChanged="PointerWheelChangedShape">
+							<Rectangle.RenderTransform>
+								<TransformGroup>
+									<TranslateTransform
+										X="{Binding StartPoint.X}"
+										Y="{Binding StartPoint.Y}"/>
+									<ScaleTransform
+										ScaleX="{Binding ScaleX}"
+										ScaleY="{Binding ScaleY}"/>
+								</TransformGroup>
+							</Rectangle.RenderTransform>
+						</Rectangle>
+					</DataTemplate>
+				</ItemsControl.DataTemplates>
+			</ItemsControl>
+		</Border>
+	</Grid>
+
+</Window>
